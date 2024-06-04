@@ -16,6 +16,9 @@ public class LibroServis {
 
 		libros.add(lib1);
 		libros.add(lib2);
+		libros.add(lib3);
+		libros.add(lib4);
+		
 		return libros;
 
 	}
