@@ -3,8 +3,10 @@ package bibliotecaSpring.servises;
 import java.util.ArrayList;
 import java.util.List;
 
-import bibliotecaSpring.dtos.Libro;
+import org.springframework.stereotype.Component;
 
+import bibliotecaSpring.dtos.Libro;
+@Servis
 public class LibroServis {
 
 	public ArrayList<Libro> listalibros() {
