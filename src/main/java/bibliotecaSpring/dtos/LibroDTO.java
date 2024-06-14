@@ -1,6 +1,6 @@
 package bibliotecaSpring.dtos;
 
-public class Libro {
+public class LibroDTO {
 
 	private long ISBN;
 	private int anio;
@@ -9,7 +9,7 @@ public class Libro {
 	private String autor;
 	private String titulo;
 
-	public Libro(long iSBN, int anio, String autor, String titulo) {
+	public LibroDTO(long iSBN, int anio, String autor, String titulo) {
 		super();
 		ISBN = iSBN;
 		this.anio = anio;
@@ -17,7 +17,7 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public Libro() {
+	public LibroDTO() {
 
 	}
 
@@ -57,5 +57,7 @@ public class Libro {
 	public static int getAnioMaxAntiguedad() {
 		return ANIO_MAX_ANTIGUEDAD;
 	}
+	
+	
 
 }
