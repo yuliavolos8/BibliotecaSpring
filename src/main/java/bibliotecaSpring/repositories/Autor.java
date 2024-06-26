@@ -17,6 +17,21 @@ public class Autor {
 	private LocalDate fechaNacimiento;
 	
 	
+<<<<<<< Updated upstream
+=======
+	public Autor(String nombre, LocalDate fechaNacimiento) {
+	
+		this.nombre = nombre;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+
+	public Autor() {
+		
+	}
+
+
+>>>>>>> Stashed changes
 	@OneToMany(mappedBy = "autor")
 	private Set<Libro> libros;
 
