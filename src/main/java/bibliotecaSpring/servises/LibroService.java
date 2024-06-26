@@ -1,6 +1,7 @@
 package bibliotecaSpring.servises;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class LibroService {
 
 	}
 
-//buscamos libro por si ISBN
+//buscamos libro por su ISBN
 	public LibroDTO ISBNLibro1(long ISBN) {
 		// listalibros();
 		List<LibroDTO> libros = listalibros();
@@ -99,8 +100,8 @@ public class LibroService {
 	public void insertarDatosInciales() {
 
 		Autor autor = new Autor();
-		autor.setNombre("carlos casado");
-		autor.setFechaNacimiento(LocalDate.of(1970, 10, 20));
+		autor.setNombre("Maria Cano");
+		autor.setFechaNacimiento(LocalDate.of(1980, 11, 28));
 		repoAutor.save(autor);
 		ArrayList<LibroDTO> listalibros = listalibros();
 		for (LibroDTO dto : listalibros) {
@@ -110,6 +111,14 @@ public class LibroService {
 		}
 
 		// Mapstruct y el Objectmapper
+
+	}
+
+	public Autor insertarAutor(Autor autor) {
+		Autor nuevoAutor = new Autor();
+		nuevoAutor.setNombre(autor.getNombre());
+		nuevoAutor.setFechaNacimiento(autor.getFechaNacimiento());
+		return repoAutor.save(nuevoAutor);
 
 	}
 
@@ -126,4 +135,6 @@ public class LibroService {
 
 		return entidad;
 	}
+
+
 }
