@@ -25,10 +25,18 @@ public class LibroService {
 
 	public ArrayList<LibroDTO> listalibros() {
 		ArrayList<LibroDTO> libros = new ArrayList<>();
-		LibroDTO lib1 = new LibroDTO(1234567, 1985, " Ramon Blanco", "Java");
-		LibroDTO lib2 = new LibroDTO(167800, 2000, " maria casado", "C++");
-		LibroDTO lib3 = new LibroDTO(167806, 1967, " Rebeca casado", " Python");
-		LibroDTO lib4 = new LibroDTO(167802, 2001, "carlos casado", " HTML");
+
+		Autor autor1 = new Autor("ramon Blanco", LocalDate.of(1985, 9, 11));
+		LibroDTO lib1 = new LibroDTO(1234567, LocalDate.now(), autor1, "Java");
+
+		Autor autor2 = new Autor("maria casado", LocalDate.of(2000, 1, 1));
+		LibroDTO lib2 = new LibroDTO(167800, LocalDate.now(), autor2, "C++");
+
+		Autor autor3 = new Autor("Rebeca casado", LocalDate.of(1967, 1, 1));
+		LibroDTO lib3 = new LibroDTO(167806, LocalDate.now(), autor3, "Python");
+
+		Autor autor4 = new Autor("carlos casado", LocalDate.of(2001, 1, 1));
+		LibroDTO lib4 = new LibroDTO(167802, LocalDate.now(), autor4, "HTML");
 
 		libros.add(lib1);
 		libros.add(lib2);
@@ -79,13 +87,13 @@ public class LibroService {
 		}
 		return null;
 	}
-
-	public List<LibroDTO> libroAntiguo(int anioParametro) {
+// buscamos libros demaciado antiguos
+	public List<LibroDTO> libroAntiguo(LocalDate fecha) {
 		ArrayList<LibroDTO> librosAntiguos = new ArrayList<>();
 		List<LibroDTO> libros = listalibros();
 		for (LibroDTO lib : libros) {
-			int anio = lib.getAnio();
-			if (anio <= anioParametro) {
+			int anio = lib.getFechaDeLanzamiento().getYear();
+			if (anio <= fecha.getYear() ){
 				librosAntiguos.add(lib);
 
 			}
@@ -126,15 +134,25 @@ public class LibroService {
 
 		Libro entidad = new Libro();
 
-		Autor byNombre = repoAutor.findByNombre(dto.getAutor());
-
-		entidad.setAutor(byNombre);
-		entidad.setFechaLanzamiento(LocalDate.of(dto.getAnio(), 1, 1));
+		Autor autorEntidad = dto.getAutor();
+		autorEntidad.setFechaNacimiento(dto.getAutor().getFechaNacimiento());
+		autorEntidad.setNombre(dto.getAutor().getNombre());
+		entidad.setAutor(autorEntidad);
+		entidad.setFechaLanzamiento(dto.getFechaDeLanzamiento());
 		entidad.setISBN(dto.getISBN());
 		entidad.setTitulo(dto.getTitulo());
 
 		return entidad;
 	}
 
+	public Libro update(LibroDTO libro) {
+		LibroDTO actualizadoEntero = new LibroDTO();
+		actualizadoEntero.setFechaDeLanzamiento(libro.getFechaDeLanzamiento());
+		actualizadoEntero.setAutor(libro.getAutor());
+		actualizadoEntero.setTitulo(libro.getTitulo());
+		actualizadoEntero.setISBN(libro.getISBN());
+		return repoLibro.update(actualizadoEntero);
+
+	}
 
 }

@@ -1,18 +1,22 @@
 package bibliotecaSpring.dtos;
 
+import java.time.LocalDate;
+
+import bibliotecaSpring.repositories.Autor;
+
 public class LibroDTO {
 
 	private long ISBN;
-	private int anio;
+	private LocalDate fechaDeLanzamiento;
 	private final static int ANIO_MAX_ANTIGUEDAD = 30;
 
-	private String autor;
+	private Autor autor;
 	private String titulo;
 
-	public LibroDTO(long iSBN, int anio, String autor, String titulo) {
-		super();
-		ISBN = iSBN;
-		this.anio = anio;
+	public LibroDTO(long iSBN, LocalDate fecha, Autor autor, String titulo) {
+
+		this.ISBN = iSBN;
+		this.fechaDeLanzamiento = fecha;
 		this.autor = autor;
 		this.titulo = titulo;
 	}
@@ -30,20 +34,12 @@ public class LibroDTO {
 		ISBN = iSBN;
 	}
 
-	public int getAnio() {
-		return anio;
-	}
-
-	public void setAnio(int anio) {
-		this.anio = anio;
-	}
-
-	public String getAutor() {
+	public Autor getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAutor(Autor autor2) {
+		this.autor = autor2;
 	}
 
 	public String getTitulo() {
@@ -57,7 +53,13 @@ public class LibroDTO {
 	public static int getAnioMaxAntiguedad() {
 		return ANIO_MAX_ANTIGUEDAD;
 	}
-	
-	
+
+	public LocalDate getFechaDeLanzamiento() {
+		return fechaDeLanzamiento;
+	}
+
+	public void setFechaDeLanzamiento(LocalDate fechaDeLanzamiento) {
+		this.fechaDeLanzamiento = fechaDeLanzamiento;
+	}
 
 }

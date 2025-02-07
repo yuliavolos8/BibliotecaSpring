@@ -1,77 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.yulia.biblioteca</groupId>
-	<artifactId>BibliotecaYulia</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>bibliotecaSpring</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-	<dependencies>
+<properties>
+    <java.version>17</java.version>
+    <hibernate.version>5.6.10.Final</hibernate.version> <!-- Usa una versión estable y compatible -->
+</properties>
+
+<dependencies>
+<!-- Dependencia para Spring Boot Starter -->
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-data-jpa</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
 </dependency>
+
+<!-- Dependencia para Spring Data JPA -->
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-web</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </exclusion>
+    </exclusions>
 </dependency>
+
+<!-- Dependencia para Hibernate Core -->
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-devtools</artifactId>
-<scope>runtime</scope>
-<optional>true</optional>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>${hibernate.version}</version>
 </dependency>
+
+<!-- Dependencia para Spring Web -->
 <dependency>
-<groupId>org.mariadb.jdbc</groupId>
-<artifactId>mariadb-java-client</artifactId>
-<scope>runtime</scope>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
+
+<!-- Dependencia para Spring DevTools -->
 <dependency>
-<groupId>org.projectlombok</groupId>
-<artifactId>lombok</artifactId>
-<optional>true</optional>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
 </dependency>
-<dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-test</artifactId>
-<scope>test</scope>
-</dependency>
+
+<!-- Dependencia para MySQL -->
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.33</version>
 </dependency>
 
+<!-- Dependencia para Lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+</dependency>
+
+<!-- Dependencia para Jakarta Persistence API -->
+<dependency>
+    <groupId>jakarta.persistence</groupId>
+    <artifactId>jakarta.persistence-api</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- Dependencia para Tests -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
 </dependencies>
+
+<repositories>
+<repository>
+    <id>central</id>
+    <url>https://repo.maven.apache.org/maven2</url>
+</repository>
+</repositories>
+
 <build>
 <plugins>
-<plugin>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-maven-plugin</artifactId>
-<configuration>
-<excludes>
-<exclude>
-<groupId>org.projectlombok</groupId>
-<artifactId>lombok</artifactId>
-</exclude>
-</excludes>
-</configuration>
-</plugin>
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
 </plugins>
 </build>
-	
-
-
-	
-
-</project>
